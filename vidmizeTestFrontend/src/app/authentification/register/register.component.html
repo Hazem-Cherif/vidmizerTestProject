@@ -1,0 +1,62 @@
+
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div class="card card-signin my-5">
+            <div class="card-body">
+              <h1 class="card-title text-center w-100 p-3 text-primary text-uppercase">Sign Up</h1>
+              <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="register()"  >
+                {{err}}&nbsp;
+                <div class="form-label-group">
+                  <input type="text" id="inputFirstName" class="form-control" placeholder="First Name" formControlName="firstName">
+                  <label for="inputFirstName">First Names</label>
+                  <br>
+                  <div class="alert alert-danger" *ngIf="registerForm.controls['firstName'].errors && registerForm.get('firstName').touched">
+                    <div *ngIf="registerForm.controls['firstName'].hasError('required')">First Name is a required</div>
+                  </div>
+                </div>
+                
+                <div class="form-label-group">
+                    <input type="text" id="inputLastName" class="form-control" placeholder="Last Name" formControlName="lastName">
+                    <label for="inputLastName">Last Names</label>
+                    <br>
+                    <div class="alert alert-danger" *ngIf="registerForm.controls['lastName'].errors && registerForm.get('lastName').touched">
+                      <div *ngIf="registerForm.controls['lastName'].hasError('required')">Last Name is a required</div>
+                    </div>
+                </div>
+
+                  <div class="form-label-group">
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email">
+                    <label for="inputEmail">Email address</label>
+                    <br>
+                    <div class="alert alert-danger" *ngIf="registerForm.controls['email'].errors && registerForm.get('email').touched">
+                      <div *ngIf="registerForm.controls['email'].hasError('required')">the email is a required</div>
+                    </div>
+                  </div>
+                <div class="form-label-group">
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password">
+                  <label for="inputPassword">Password</label>
+                  <br>
+                  <div class="alert alert-danger" *ngIf="registerForm.controls['password'].errors && registerForm.get('password').touched ">
+                    <div *ngIf="registerForm.controls['password'].hasError('required')">the password is a requirement</div>
+                  </div>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block text-uppercase col-lg-5" type="submit"  [disabled]="registerForm.invalid" >Register</button>
+                
+    
+                <button class="btn btn-lg btn-secondary btn-block text-uppercase col-lg-5" type="submit" routerLink="/login">Sign in</button>
+               </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </body>
+    
+    
+    
+    
+    
+    
+   

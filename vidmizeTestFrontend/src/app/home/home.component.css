@@ -1,0 +1,24 @@
+
+#left{
+    float:left;
+    width: 700px;
+    margin-left: 5rem;
+}
+
+#right{
+    margin-top: 2rem;
+    float:right;
+    margin-right:5rem;
+    width: 800px;
+}
+button{
+   
+  }
+
+
+  .search{
+    width: 300px;
+
+  }
+
+  
