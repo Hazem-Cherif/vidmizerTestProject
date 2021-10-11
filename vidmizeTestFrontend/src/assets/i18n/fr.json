@@ -1,0 +1,27 @@
+{
+    "login":{
+        "title" : "S'identifier",
+        "email" : "Adresse e-mail",
+        "emailError":"l'email est obligatoire",
+        "password":"le mot de passe",
+        "passwordError":"le mot de passe est obligatoire",
+        "signin":"connecter",
+        "signup":"inscrire",
+        "firstName": "prenom",
+        "lastName": "nom",
+        "firstnameError":"le prenom est obligatoire",
+        "lastnameError":"le nom est obligatoire"
+
+    },
+    "navbar":{
+        "logout": "Se deconnecter"
+    },
+    "home":{
+        "title":"Formulaire de carnet d'adresses",
+        "phone": "Numéro de téléphone",
+        "phoneerror1":"Le numéro de téléphone est requis",
+        "phoneerror2":"La longueur du numéro de téléphone doit être supérieure à 10",
+        "add":"Ajouter le contact"
+    }
+    
+}

@@ -7,13 +7,17 @@ import { RegisterComponent } from './authentification/register/register.componen
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule ,HttpClient} from '@angular/common/http';
 import {CollapseModule , MDBBootstrapModule ,NavbarModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md'
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
+import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -37,10 +41,19 @@ import {MatIconModule} from '@angular/material/icon';
     BrowserAnimationsModule,
     MatTableModule,
     MatIconModule,
+    NgbModule,
+    MatPaginatorModule,
     CollapseModule.forRoot(),
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => { return new TranslateHttpLoader(http, './assets/i18n/', '.json'); },
+        deps: [HttpClient]
+      }
+    })
   ],
-  providers: [ ],
+  providers: [ TranslateService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

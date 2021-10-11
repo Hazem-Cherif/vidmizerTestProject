@@ -42,7 +42,9 @@ export class HomeComponent implements OnInit {
         this.contactService.getAllcontactsByUser(localStorage.getItem('email')).subscribe(data => {
           this.contacts = data
           this.contactCharger = true
+          console.log(this.contacts.length)
           this.contacts.sort((a, b) => a.firstName.localeCompare(b.firstName))
+          console.log(this.contactCharger,this.regionCharger)
           if (this.contactCharger) {
             this.addressForm()
           }
@@ -63,6 +65,16 @@ export class HomeComponent implements OnInit {
   }
 
   async addContact() {
+    if (this.contacts.length == 0 ) {
+      this.addressBookForm.value.phoneNumbre = Number(this.addressBookForm.value.phoneNumbre)
+      await this.contactService.addContact(this.addressBookForm.value).subscribe(() => {
+        this.contacts
+        this.reload = true
+        if(this.reload){this.ngOnInit();
+       }
+        
+      });
+    }
     for (const i of this.contacts) {
       if (i.firstName == this.addressBookForm.value.firstName && i.lastName == this.addressBookForm.value.lastName) {
         this.err = 'first name and last name already exist ';
@@ -73,6 +85,7 @@ export class HomeComponent implements OnInit {
 
         break;
       }
+       
       else {
         this.addressBookForm.value.phoneNumbre = Number(this.addressBookForm.value.phoneNumbre)
         await this.contactService.addContact(this.addressBookForm.value).subscribe(() => {

@@ -1,0 +1,27 @@
+{
+    "login":{
+        "title" : "Login",
+        "email" : "Email address",
+        "emailError":"email is required",
+        "password":"password",
+        "passwordError":"the password is required",
+        "signin":"sign in",
+        "signup":"sign up",
+        "firstName": "first name",
+        "lastName": "last name",
+        "firstnameError":"the first name is required",
+        "lastnameError":"the last name is required"
+
+    },
+    "navbar":{
+        "logout": "Logout"
+    },
+    "home":{
+        "title":"Address book form",
+        "phone": "phone numbre",
+        "phoneerror1":"Phone number is required",
+        "phoneerror2":"The length of the phone number must be greater than 10",
+        "add":"Add contact"
+    }
+    
+}

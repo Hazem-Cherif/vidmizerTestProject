@@ -11,44 +11,40 @@
                     <div class="card-body">
                         {{err}}
                         <br>
-                        <h1 class="card-title text-center w-100 p-3 text-primary text-uppercase">Address Book Form</h1>
+                        <h1 class="card-title text-center w-100 p-3 text-primary text-uppercase">{{'home.title' | translate }}</h1>
                         <form class="form-signin" [formGroup]="addressBookForm" (ngSubmit)="addContact()">
                             <div class="form-label-group">
                                 <input type="text" id="inputFirstName" class="form-control" placeholder="First Name"
                                     formControlName="firstName">
-                                <label for="inputFirstName">First Name</label>
+                                <label for="inputFirstName">{{ 'login.firstName' | translate }}</label>
                                 <br>
                                 <div class="alert alert-danger"
                                     *ngIf="addressBookForm.controls['firstName'].errors && addressBookForm.get('firstName').touched">
-                                    <div *ngIf="addressBookForm.controls['firstName'].hasError('required')">First Name
-                                        is required</div>
+                                    <div *ngIf="addressBookForm.controls['firstName'].hasError('required')">{{ 'login.firstnameError' | translate }}</div>
                                 </div>
                             </div>
 
                             <div class="form-label-group">
                                 <input type="text" id="inputLastName" class="form-control" placeholder="Last Name"
                                     formControlName="lastName">
-                                <label for="inputLastName">Last Name</label>
+                                <label for="inputLastName">{{ 'login.lastName' | translate }}</label>
                                 <br>
                                 <div class="alert alert-danger"
                                     *ngIf="addressBookForm.controls['lastName'].errors && addressBookForm.get('lastName').touched">
-                                    <div *ngIf="addressBookForm.controls['lastName'].hasError('required')">Last Name is
-                                        required</div>
+                                    <div *ngIf="addressBookForm.controls['lastName'].hasError('required')">{{ 'login.lastnameError' | translate }}</div>
                                 </div>
                             </div>
 
                             <div class="form-label-group">
                                 <input type="number" id="inputphoneNumbre" class="form-control" placeholder="phone Numbre"
                                     formControlName="phoneNumbre">
-                                <label for="inputphoneNumbre">phone Numbre</label>
+                                <label for="inputphoneNumbre">{{ 'home.phone' | translate }}</label>
                                 <br>
                                 <div class="alert alert-danger"
                                     *ngIf="addressBookForm.controls['phoneNumbre'].errors && addressBookForm.get('phoneNumbre').touched">
-                                    <div *ngIf="addressBookForm.controls['phoneNumbre'].hasError('required')">phone
-                                        Numbre is required</div>
+                                    <div *ngIf="addressBookForm.controls['phoneNumbre'].hasError('required')">{{ 'home.phoneerror1' | translate }}</div>
 
-                                    <div *ngIf="addressBookForm.controls['phoneNumbre'].hasError('minlength')">phone
-                                        Numbre length must be greater then 10</div>
+                                    <div *ngIf="addressBookForm.controls['phoneNumbre'].hasError('minlength')">{{ 'home.phoneerror2' | translate }}</div>
                                 </div>
                             </div>
 
@@ -64,7 +60,7 @@
 
                             </div>
                             <button class="btn btn-lg btn-primary btn-block text-uppercase col-lg-5 " type="submit"
-                                [disabled]="addressBookForm.invalid">Add Contact</button>
+                                [disabled]="addressBookForm.invalid">{{ 'home.add' | translate }}</button>
 
 
 
@@ -82,7 +78,7 @@
         <div id="left" class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card card-signin my-5">
                 <div class="card-body">
-                    <h1 class="card-title text-center w-100 p-3 text-primary text-uppercase">Address Book Form</h1>
+                    <h1 class="card-title text-center w-100 p-3 text-primary text-uppercase">{{'home.title' | translate }}</h1>
                     <div class="search-hero ">
                         <input type="string" id="inputRecherche" class="search form-control col-lg-1"
                             placeholder="Search" [(ngModel)]="searchText">
@@ -95,17 +91,18 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">First Name</th>
-                                <th scope="col">Last Names</th>
-                                <th scope="col">Phone Numbre</th>
+                                <th scope="col">{{ 'login.firstName' | translate }}</th>
+                                <th scope="col">{{ 'login.lastName' | translate }}</th>
+                                <th scope="col">{{ 'home.phone' | translate }}</th>
                                 <th scope="col">Region</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let c of contacts; index as i">
+                                <ng-container *ngIf="c.firstName == searchText || c.lastName == searchText || c.phoneNumbre == searchText || searchText == '' || searchText== null">
 
-                                <th scope="row">{{ i + 1 }}</th>
+                                <td scope="row">{{ i + 1 }}</td>
                                 <td>{{c.firstName}}</td>
                                 <td>{{c.lastName}}</td>
                                 <td>{{ c.phoneNumbre }}</td>
@@ -113,10 +110,13 @@
                                 <td> <button type="button" (click)="deleteContact(c.id)"
                                         class="btn btn-dark">Delete</button>
                                 </td>
+                            </ng-container>
                             </tr>
                         </tbody>
                     </table>
+                   
                 </div>
+              
             </div>
         </div>
     </div>

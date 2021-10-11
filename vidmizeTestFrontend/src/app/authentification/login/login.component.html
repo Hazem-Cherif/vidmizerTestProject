@@ -5,32 +5,32 @@
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
           <div class="card card-signin my-5">
             <div class="card-body">
-                <h1 class="card-title text-center w-100 p-3 text-primary text-uppercase">Sign in</h1>
+                <h1 class="card-title text-center w-100 p-3 text-primary text-uppercase">{{ 'login.title' | translate }}</h1>
 
               <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login()">
                 {{err}}&nbsp;
 
                 <div class="form-label-group">
                   <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email">
-                  <label for="inputEmail">Email address</label>
+                  <label for="inputEmail">{{ 'login.email' | translate }}</label>
                   <br>
                   <div class="alert alert-danger" *ngIf="loginForm.controls['email'].errors && loginForm.get('email').touched">
-                    <div *ngIf="loginForm.controls['email'].hasError('required')">the email is a requirement</div>
+                    <div *ngIf="loginForm.controls['email'].hasError('required')">{{ 'login.emailError' | translate }}</div>
                   </div>
                 </div>
     
                 <div class="form-label-group">
                   <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password">
-                  <label for="inputPassword">Password</label>
+                  <label for="inputPassword">{{ 'login.password' | translate }}</label>
                   <br>
                   <div class="alert alert-danger" *ngIf="loginForm.controls['password'].errors && loginForm.get('password').touched ">
-                    <div *ngIf="loginForm.controls['password'].hasError('required')">the password is a requirement</div>
+                    <div *ngIf="loginForm.controls['password'].hasError('required')">{{ 'login.passwordError' | translate }}</div>
                   </div>
                 </div>
-                 <button class="btn btn-lg btn-primary btn-block text-uppercase col-lg-5" type="submit"  [disabled]="loginForm.invalid" >Sign in</button>
+                 <button class="btn btn-lg btn-primary btn-block text-uppercase col-lg-5" type="submit"  [disabled]="loginForm.invalid" >{{'login.signin' | translate }}</button>
                 
     
-                <button class="btn btn-lg btn-secondary btn-block text-uppercase col-lg-5" type="submit" routerLink="/register">Sign up</button>
+                <button class="btn btn-lg btn-secondary btn-block text-uppercase col-lg-5" type="submit" routerLink="/register">{{'login.signup' | translate }}</button>
                </form>
             </div>
           </div>
