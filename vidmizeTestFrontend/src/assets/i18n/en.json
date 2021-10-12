@@ -4,13 +4,16 @@
         "email" : "Email address",
         "emailError":"email is required",
         "password":"password",
-        "passwordError":"the password is required",
+        "passwordError1":"the password is required",
         "signin":"sign in",
         "signup":"sign up",
-        "firstName": "first name",
-        "lastName": "last name",
+        "firstName": "FirstName",
+        "lastName": "LastName",
         "firstnameError":"the first name is required",
-        "lastnameError":"the last name is required"
+        "lastnameError":"the last name is required",
+        "passwordError2":"The length of the password must be greater than 6",
+        "err1":"Email and password are wrong or you are not registred. ",
+        "emailerror1":"you need to regester with an other email"
 
     },
     "navbar":{
@@ -18,10 +21,14 @@
     },
     "home":{
         "title":"Address book form",
-        "phone": "phone numbre",
+        "phone": "PhoneNumbre",
         "phoneerror1":"Phone number is required",
         "phoneerror2":"The length of the phone number must be greater than 10",
-        "add":"Add contact"
+        "add":"Add contact",
+        "hello":"Hello",
+        "warning": "Warning!",
+        "err1": "first name and last name already exist",
+        "err2": "phone numbre already exist. "
     }
     
 }

@@ -3,24 +3,59 @@
         <mat-spinner color="accent"></mat-spinner>
     </div>
 </ng-template>
+
 <ng-container *ngIf="regionCharger" ; else progress>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">VIDMIZER</a>
+            <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                </ul>
+                <form class="d-flex input-group w-auto">
+                    <a class="navbar-brand" href="#">{{ 'home.hello' | translate}} {{userName}}</a>
+                    <button class="btn btn-outline-primary" (click)="logout()" type="button">
+                        {{'navbar.logout' | translate }}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- /Navbar -->
+
     <div id="left" class="container ">
+        <!--add contact form-->
         <div class="row">
             <div id="left" class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="card card-signin my-5">
                     <div class="card-body">
-                        {{err}}
+                        <ng-container *ngIf="err1==true">
+                            <ngb-alert [dismissible]="true">
+                                <strong>{{ 'home.warning' | translate }}</strong> {{ 'home.err1' | translate }}
+                            </ngb-alert>
+                        </ng-container>
+                        <ng-container *ngIf="err2==true">
+                            <ngb-alert [dismissible]="true">
+                                <strong>{{ 'home.warning' | translate }}</strong> {{ 'home.err2' | translate }}
+                            </ngb-alert>
+                        </ng-container>
                         <br>
-                        <h1 class="card-title text-center w-100 p-3 text-primary text-uppercase">{{'home.title' | translate }}</h1>
+                        <h1 class="card-title text-center w-100 p-3 text-primary text-uppercase">{{'home.title' |
+                            translate }}</h1>
                         <form class="form-signin" [formGroup]="addressBookForm" (ngSubmit)="addContact()">
                             <div class="form-label-group">
                                 <input type="text" id="inputFirstName" class="form-control" placeholder="First Name"
                                     formControlName="firstName">
                                 <label for="inputFirstName">{{ 'login.firstName' | translate }}</label>
                                 <br>
-                                <div class="alert alert-danger"
-                                    *ngIf="addressBookForm.controls['firstName'].errors && addressBookForm.get('firstName').touched">
-                                    <div *ngIf="addressBookForm.controls['firstName'].hasError('required')">{{ 'login.firstnameError' | translate }}</div>
+                                <div class="alert alert-danger"  *ngIf="addressBookForm.controls['firstName'].errors && addressBookForm.get('firstName').touched">
+                                    <div *ngIf="addressBookForm.controls['firstName'].hasError('required')">{{  'login.firstnameError' | translate }}</div>
                                 </div>
                             </div>
 
@@ -36,25 +71,20 @@
                             </div>
 
                             <div class="form-label-group">
-                                <input type="number" id="inputphoneNumbre" class="form-control" placeholder="phone Numbre"
-                                    formControlName="phoneNumbre">
+                                <input type="number" id="inputphoneNumbre" class="form-control"
+                                    placeholder="phone Numbre" formControlName="phoneNumbre">
                                 <label for="inputphoneNumbre">{{ 'home.phone' | translate }}</label>
                                 <br>
-                                <div class="alert alert-danger"
-                                    *ngIf="addressBookForm.controls['phoneNumbre'].errors && addressBookForm.get('phoneNumbre').touched">
-                                    <div *ngIf="addressBookForm.controls['phoneNumbre'].hasError('required')">{{ 'home.phoneerror1' | translate }}</div>
-
-                                    <div *ngIf="addressBookForm.controls['phoneNumbre'].hasError('minlength')">{{ 'home.phoneerror2' | translate }}</div>
+                                <div class="alert alert-danger"*ngIf="addressBookForm.controls['phoneNumbre'].errors && addressBookForm.get('phoneNumbre').touched">
+                                    <div *ngIf="addressBookForm.controls['phoneNumbre'].hasError('required')">{{'home.phoneerror1' | translate }}</div>
+                                    <div *ngIf="addressBookForm.controls['phoneNumbre'].hasError('minlength')">{{'home.phoneerror2' | translate }}</div>
                                 </div>
                             </div>
 
                             <div class="form-label-group">
-                                <select class="form-select" id="inputregion" name="region" formControlName="region" aria-placeholder="region"
+                                <select class="form-select" id="inputregion" name="region" formControlName="region"
                                     aria-label="Default select example">
-                                    <label for="inputregion">region</label>
-                                    <option selected *ngFor="let region of regions" [value]=region.nom>{{region.nom}}
-                                    </option>
-
+                                    <option *ngFor="let region of regions" [value]=region.nom>{{region.nom}}</option>
                                 </select>
 
 
@@ -62,31 +92,30 @@
                             <button class="btn btn-lg btn-primary btn-block text-uppercase col-lg-5 " type="submit"
                                 [disabled]="addressBookForm.invalid">{{ 'home.add' | translate }}</button>
 
-
-
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!--/add contact form-->
+
 
 </ng-container>
 
 <div id="left" class="container ">
+    <!-- contact list table-->
     <div class="row">
         <div id="left" class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card card-signin my-5">
                 <div class="card-body">
-                    <h1 class="card-title text-center w-100 p-3 text-primary text-uppercase">{{'home.title' | translate }}</h1>
+                    <h1 class="card-title text-center w-100 p-3 text-primary text-uppercase">{{'home.title' | translate
+                        }}</h1>
                     <div class="search-hero ">
                         <input type="string" id="inputRecherche" class="search form-control col-lg-1"
                             placeholder="Search" [(ngModel)]="searchText">
-
-
                     </div>
 
-                    
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -100,24 +129,25 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let c of contacts; index as i">
-                                <ng-container *ngIf="c.firstName == searchText || c.lastName == searchText || c.phoneNumbre == searchText || searchText == '' || searchText== null">
+                                <ng-container
+                                    *ngIf="c.firstName == searchText || c.lastName == searchText || c.phoneNumbre == searchText || searchText == '' || searchText== null">
 
-                                <td scope="row">{{ i + 1 }}</td>
-                                <td>{{c.firstName}}</td>
-                                <td>{{c.lastName}}</td>
-                                <td>{{ c.phoneNumbre }}</td>
-                                <td>{{c.region}}</td>
-                                <td> <button type="button" (click)="deleteContact(c.id)"
-                                        class="btn btn-dark">Delete</button>
-                                </td>
-                            </ng-container>
+                                    <td scope="row">{{ i + 1 }}</td>
+                                    <td>{{c.firstName}}</td>
+                                    <td>{{c.lastName}}</td>
+                                    <td>{{ c.phoneNumbre }}</td>
+                                    <td>{{c.region}}</td>
+                                    <td> <button type="button" (click)="deleteContact(c.id)"
+                                            class="btn btn-dark">Delete</button> </td>
+                                </ng-container>
                             </tr>
                         </tbody>
                     </table>
-                   
+
                 </div>
-              
+
             </div>
         </div>
     </div>
+    <!-- contact list table-->
 </div>

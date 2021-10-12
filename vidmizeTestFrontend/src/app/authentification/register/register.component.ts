@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   password: string;
   user: any;
   userList: any
-  err: string;
+  err = false;
   checkUser: boolean = true;
   constructor(private userService: UserService, private router: Router) { }
 
@@ -27,9 +27,11 @@ export class RegisterComponent implements OnInit {
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     });
   }
+
+  //checking if the user exist or not 
   async checkuserState() {
     await this.userService.checkUser(this.registerForm.value.email).subscribe(data => {
       this.user = data;
@@ -42,15 +44,12 @@ export class RegisterComponent implements OnInit {
   }
 
   async register() {
-
-     this.checkuserState()
-
+    this.checkuserState()
     if (this.checkUser == false) {
       await this.userService.registerUser(this.registerForm.value).subscribe(() => this.userList = [this.registerForm.value, ...this.userList]);
-      this.router.navigate(['/login']);  
+      this.router.navigate(['/login']);
     } else {
-      this.err = 'email already exist ';
-
+      this.err = true;
     }
   }
 }

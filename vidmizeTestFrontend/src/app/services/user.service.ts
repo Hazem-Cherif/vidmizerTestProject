@@ -25,7 +25,5 @@ export class UserService {
     this.userInfo = JSON.stringify({email})
     return this.httpClient.post<any>(environment.BACK_END_USER_CHECK, this.userInfo );
   }
-  getAllRegions(): Observable<Region[]>{
-    return this.httpClient.get<Region[]>(environment.API_GEO_FRANCE);
-  }
+  
 }

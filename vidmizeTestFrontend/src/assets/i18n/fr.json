@@ -4,13 +4,17 @@
         "email" : "Adresse e-mail",
         "emailError":"l'email est obligatoire",
         "password":"le mot de passe",
-        "passwordError":"le mot de passe est obligatoire",
+        "passwordError1":" mot de passe est obligatoire",
         "signin":"connecter",
         "signup":"inscrire",
-        "firstName": "prenom",
-        "lastName": "nom",
+        "firstName": "Prénom",
+        "lastName": "Nom",
         "firstnameError":"le prenom est obligatoire",
-        "lastnameError":"le nom est obligatoire"
+        "lastnameError":"le nom est obligatoire",
+        "passwordError2":"La longueur du mot de passe doit être supérieure à 6",
+        "err1" : "L'email et le mot de passe sont erronés ou vous n'êtes pas enregistré",
+        "emailerror1":"vous devez vous inscrire avec un autre e-mail"
+
 
     },
     "navbar":{
@@ -18,10 +22,14 @@
     },
     "home":{
         "title":"Formulaire de carnet d'adresses",
-        "phone": "Numéro de téléphone",
+        "phone": "Téléphone",
         "phoneerror1":"Le numéro de téléphone est requis",
         "phoneerror2":"La longueur du numéro de téléphone doit être supérieure à 10",
-        "add":"Ajouter le contact"
+        "add":"Ajouter le contact",
+        "hello":"Salut",
+        "warning":"Alerte!",
+        "err1": "le prénom et le nom existent déjà",
+        "err2": "le numéro de téléphone existe déjà"
     }
     
 }

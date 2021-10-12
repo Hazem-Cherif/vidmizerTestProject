@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
   user: any;
-  err: string;
+  err = false
   checkUser: boolean = false;
   logedIn: boolean;
   constructor(private userService: UserService, private router: Router) { }
@@ -27,26 +27,17 @@ export class LoginComponent implements OnInit {
     });
   }
   async login() {
-
-
-
     await this.userService.loginUser(this.loginForm.value.email, this.loginForm.value.password).subscribe(data => {
       this.user = data
       if (this.user == null) {
-        this.err = 'hello , you need to register first Or your email and password are wrong  :)';
-        
+        this.err = true;      
       }
-
-      else {
-       
+      else {      
         localStorage.setItem('email', this.user.email);
         localStorage.setItem('userName', this.user.firstName);
         this.router.navigate(['/home']);
-
       }
-
     })
   }
-
 }
 
